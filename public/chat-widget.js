@@ -49,7 +49,11 @@
   chatBody.style.flex = "1";
   chatBody.style.padding = "10px";
   chatBody.style.overflowY = "auto";
-  
+  chatBody.style.display = "flex";
+  chatBody.style.flexDirection = "column";
+  chatBody.style.gap = "8px"; // spacing between bubbles
+  chatBody.style.fontSize = "14px"; // standard readable size
+
   // Input area
   const inputArea = document.createElement("div");
   inputArea.style.display = "flex";
@@ -94,24 +98,28 @@
   // Message helper
   function appendMessage(sender, text) {
     const msg = document.createElement("div");
-    msg.style.margin = "5px 0";
-    msg.style.padding = "8px";
-    msg.style.borderRadius = "6px";
-    msg.style.maxWidth = "80%";
+    msg.style.padding = "10px 14px";
+    msg.style.borderRadius = "16px";
+    msg.style.maxWidth = "70%";
     msg.style.wordWrap = "break-word";
+    msg.style.fontFamily = "Arial, sans-serif";
+
     if (sender === "user") {
       msg.style.alignSelf = "flex-end";
       msg.style.background = "#007bff";
       msg.style.color = "white";
+      msg.style.borderBottomRightRadius = "4px"; // bubble look
     } else {
       msg.style.alignSelf = "flex-start";
       msg.style.background = "#f1f1f1";
+      msg.style.color = "#333";
+      msg.style.borderBottomLeftRadius = "4px";
     }
+
     msg.textContent = text;
     chatBody.appendChild(msg);
     chatBody.scrollTop = chatBody.scrollHeight;
   }
-
   // Send message
   async function sendMessage() {
     const message = input.value.trim();
