@@ -10,7 +10,7 @@ app.use(express.static("public"));
 
 dotenv.config();
 const API_KEY = process.env.GROQ_API_KEY;
-const _LLM = process.env.LLM;
+const LLM = process.env.LLM;
 
 
 /**
@@ -54,7 +54,7 @@ app.post("/chat", async (req, res) => {
         { role: "system", content: "You are a helpful chatbot named Jimbo. Limit answer to 50 words"},
         ...history
       ],
-      max_tokens: 300
+      max_tokens: 300,
     })
   });
 
